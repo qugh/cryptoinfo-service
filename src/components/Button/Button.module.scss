@@ -11,12 +11,16 @@
 }
 
 .default_button {
+  font-size:16px;
   border: none;
   padding: 9px 27px;
   border-radius: 59px;
   cursor: pointer;
   transition: all .3s ease;
   width: fit-content;
+  @media screen and (max-width:210px){
+    font-size:10px;
+  }
 }
 
 .transparent_button {

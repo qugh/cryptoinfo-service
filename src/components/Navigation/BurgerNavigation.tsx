@@ -6,12 +6,12 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import BurgerButton from "../common/BurgerBtn/BurgerButton";
 import clsx from "clsx";
 interface IBurgerNavigation extends  INavigation {
-    header:string,
+    title:string,
     setBurgerMenuStatus: Dispatch<SetStateAction<boolean>>,
     burgerMenuStatus: boolean
 }
 
-const BurgerNavigation:FC<IBurgerNavigation> = ({items,header,setBurgerMenuStatus,burgerMenuStatus}) => {
+const BurgerNavigation:FC<IBurgerNavigation> = ({items,title,setBurgerMenuStatus,burgerMenuStatus}) => {
     const handleClick = () => {
         setBurgerMenuStatus((prev)=>!prev)
     }
@@ -20,11 +20,11 @@ const BurgerNavigation:FC<IBurgerNavigation> = ({items,header,setBurgerMenuStatu
     <div className={styles.blur}></div>
     <div className={styles.menu__content}>
 
-        <div className={styles.menu__header}><BurgerButton onClick={handleClick}/>{header}</div>
-        <ul>
+        <div className={styles.menu__header}><BurgerButton onClick={handleClick}/><span className={styles.menu__title}>{title}</span></div>
+        <ul className={styles.menu__header_ul}>
             {items.map(item=> (
                 <li key={item.title}>
-                    <NavLink to={item.path}>{item.title}</NavLink>
+                    <NavLink onClick={handleClick} to={item.path}>{item.title}</NavLink>
                     {/*<ContactsIcon className={styles.menu__icon}/>*/}
                 </li>
             ))}

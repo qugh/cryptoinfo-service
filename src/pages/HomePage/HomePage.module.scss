@@ -8,6 +8,16 @@
    flex-wrap:wrap-reverse;
     justify-content: center;
   }
+  @media screen and (max-width:$breakpoint768){
+    margin-top:100px;
+  }
+  @media screen and (max-width:$breakpoint480){
+    margin-top:50px;
+  }
+  @media screen and (max-width:250px){
+    font-size:20px;
+    line-height:100%;
+  }
   .header_text {
     display: flex;
     max-width: 514px;
@@ -17,6 +27,8 @@
     }
     @media screen and(max-width:$breakpoint992) {
     max-width:100%;
+      max-width:850px;
+      margin-bottom:100px;
     }
     .header_h1{
       font-family: Roboto;
@@ -41,6 +53,10 @@
         font-size:32px;
         line-height:100%;
       }
+      @media screen and (max-width:250px){
+        font-size:20px;
+        line-height:100%;
+      }
     }
     .header_span{
     margin-bottom:32px;
@@ -58,6 +74,10 @@
       }
       @media screen and (max-width:$breakpoint768){
 
+      }
+      @media screen and (max-width:250px){
+        font-size:13px;
+        line-height:100%;
       }
     }
     button {

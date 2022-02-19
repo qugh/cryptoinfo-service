@@ -4,6 +4,7 @@ import { Route, Routes, useRoutes } from 'react-router-dom'
 import routes, { menuItems } from './constants/routes'
 import styles from './app.module.scss'
 import BurgerNavigation from './components/Navigation/BurgerNavigation'
+import { appTitle } from 'constants/variables'
 
 const AppContainer: FC = () => {
     const [burgerMenuStatus,setBurgerMenuStatus] = useState(false)
@@ -14,7 +15,7 @@ const AppContainer: FC = () => {
         <Header setBurgerMenuStatus={setBurgerMenuStatus} />
         {elements}
       </div>
-        <BurgerNavigation burgerMenuStatus={burgerMenuStatus} setBurgerMenuStatus={setBurgerMenuStatus} items={menuItems} header={'Neoflex'} />
+        <BurgerNavigation burgerMenuStatus={burgerMenuStatus} setBurgerMenuStatus={setBurgerMenuStatus} items={menuItems} title={appTitle} />
     </>
   )
 }

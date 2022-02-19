@@ -54,6 +54,9 @@
       @media screen and (max-width: $breakpoint992) {
         margin-right: 20px;
       }
+      @media screen and (max-width: 285px){
+        display:none;
+      }
     }
   }
 
