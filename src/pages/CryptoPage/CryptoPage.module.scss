@@ -1,0 +1,88 @@
+.container {
+
+
+
+  margin-bottom: 50px;
+
+  img {
+
+    width: 70%;
+    height: 400px;
+    margin-bottom: 50px;
+    border-radius: 18px;
+  }
+
+  .card_items {
+    margin-top:50px;
+    background: #101C46;
+    border-radius: 18px;
+    display:flex;
+    padding:10px 10px;
+    &__image{
+    margin-bottom:20px;
+    }
+    .green{
+      path:first-child{
+        fill: green
+      }
+    }
+    .red{
+      path:first-child{
+        fill:red
+      }
+    }
+    .yellow{
+      path:first-child{
+        fill:yellow;
+      }
+    }
+    &__item {
+      box-sizing: border-box;
+      cursor:pointer;
+      background: #253363;
+      border-radius: 18px;
+      width: 100%;
+      //width: 308px;
+      height: 270px;
+      padding: 48px 44px 25px 44px;
+      display: flex;
+      flex-direction: column;
+      transition:all 0.3s ease;
+
+      &:hover{
+       opacity:.7;
+      }
+      &:active{
+        opacity:.5;
+      }
+
+      .currency_block{
+        display:flex;
+        align-items: center;
+        gap:12px;
+        .currency_percent{
+          font-weight: 500;
+          font-size: 12.87px;
+          padding:7px 11px;
+          border-radius: 18px;
+        }
+        .green{
+          background: #0e8516;
+        }
+        .red{
+          background: #FF5C00;
+        }
+      }
+      .crypto_16px{
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 164%;
+      }
+      .crypto_currency{
+        font-weight: 900;
+        font-size: 29px;
+        line-height: 184%;
+      }
+    }
+  }
+}
