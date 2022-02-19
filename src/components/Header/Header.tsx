@@ -20,13 +20,13 @@ const Header: FC<IHeader> = ({setBurgerMenuStatus}) => {
       <div className={styles.menu_with_logo}>
           <BurgerButton onClick={handleClick}/>
         <h1 className={styles.header_logo}>
-          <NavLink to={''}>Neoflex</NavLink>
+          <NavLink to={''}>Cryptoinfo</NavLink>
         </h1>
         <Navigation items={menuItems} />
       </div>
       <div className={styles.buttons_block}>
-        <Button path={''} title={'Start'} className={styles.button_margin} type={BLUE_BUTTON} />
-        <Button path={''} title={'FAQ'} type={TRANSPARENT_BUTTON} />
+        <Button path={'/crypto'} title={'Start'} className={styles.button_margin} type={BLUE_BUTTON} />
+        <Button path={'/faq'} title={'FAQ'} type={TRANSPARENT_BUTTON} />
       </div>
     </div>
   )

@@ -13,17 +13,23 @@ interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({ type, className, title, path }) => {
   return (
-    <button
-      className={clsx(
-        type == TRANSPARENT_BUTTON
-          ? styles.transparent_button
-          : styles.blue_button,
-        styles.default_button,
-        className
-      )}
-    >
-      <NavLink to={path}>{title}</NavLink>
-    </button>
+    // <button
+    //   className={clsx(
+    //     type == TRANSPARENT_BUTTON
+    //       ? styles.transparent_button
+    //       : styles.blue_button,
+    //     styles.default_button,
+    //     className
+    //   )}
+    // >
+      <NavLink  className={clsx(
+          type == TRANSPARENT_BUTTON
+              ? styles.transparent_button
+              : styles.blue_button,
+          styles.default_button,
+          className
+      )} to={path}>{title}</NavLink>
+    // </button>
   )
 }
 

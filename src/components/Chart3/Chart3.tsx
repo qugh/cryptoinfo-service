@@ -12,11 +12,13 @@ import {
   ReferenceLine,
 } from 'recharts'
 import {graphicDataType} from "../../pages/CryptoPage/CryptoPage";
+import {CryptoCurrency} from "../../types/CryptoCurrency";
 
 export interface IChart3 {
-  data: Array<graphicDataType>,
+  data: Array<CryptoCurrency>,
 }
-const Chart3: FC<IChart3> = ({data}) => {
+
+const Chart3: FC<any> = ({data}) => {
 
   return (
     <>
@@ -31,13 +33,13 @@ const Chart3: FC<IChart3> = ({data}) => {
           }}
         >
           <CartesianGrid />
-          <XAxis dataKey="date"  />
+          <XAxis dataKey=""  />
           <YAxis />
           <Tooltip />
           <Legend  verticalAlign="bottom" wrapperStyle={{ lineHeight: '40px' }}/>
           <ReferenceLine y={0} stroke='#000' />
           <Line type="monotone" dataKey="high" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="low" stroke="red" />
+        <Line type="monotone" dataKey="low" stroke="red" />
           <Brush startIndex={0} dataKey="title" height={30} fill='rgba(0, 0, 0, 0)' stroke="green" />
         </LineChart>
       </ResponsiveContainer>

@@ -7,11 +7,10 @@ import { AppDispatch, RootState } from 'redux/store'
 const cryptoSliceName = 'crypto'
 const { getCryptoCurrency, getAllCryptoValues } = CryptoAPI
 
-type cryptoValuesType = { name: string; value: number }
+export type cryptoValuesType = { name: string; value: number }
 
 interface ICryptoData {
-  BTC: Array<CryptoCurrency>
-  LTC: Array<CryptoCurrency>
+    chartData: Array<CryptoCurrency>
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
   error: string | null | undefined
   currentRequestId: string | undefined
@@ -19,8 +18,7 @@ interface ICryptoData {
 }
 
 const initialState = {
-  BTC: [],
-  LTC: [],
+    chartData: [],
   loading: 'idle',
   error: null,
   currentRequestId: undefined,
@@ -39,16 +37,18 @@ interface IGraphicsData {
   HasWarning: boolean
   Type: number
   RateLimit: object
-  Data: {
+  Data: selfGraphicDataType
+}
+
+type selfGraphicDataType = {
     Aggregated: boolean
     TimeFrom: number
     TimeTo: number
     Data: CryptoCurrency[]
-  }
 }
 
 export const loadGraphicsDataByCryptoName = createAsyncThunk<
-    IGraphicsData,
+    CryptoCurrency[],
     string,
     {
         state:RootState,
@@ -57,8 +57,8 @@ export const loadGraphicsDataByCryptoName = createAsyncThunk<
     >(
   'crypto/fetchByCryptoName',
   async (cryptoName, thunkAPI) => {
-    const response = await getCryptoCurrency(9, cryptoName)
-    return response.Data.Data as IGraphicsData
+    const response = await getCryptoCurrency(30, cryptoName,'USD')
+    return response.Data.Data as CryptoCurrency[]
     /*      catch (err){
                                   let error: AxiosError<ValidationErrors> = err // cast the error for access
                                   if (!error.response) {
@@ -69,10 +69,6 @@ export const loadGraphicsDataByCryptoName = createAsyncThunk<
                                 }*/
   }
 )
-
-interface selfCryptoValuesType {}
-
-type cryptoValueType = { USD: number; RUB?: number }
 
 export const loadAllCardsData = createAsyncThunk<
   IGraphicsData,
@@ -87,15 +83,13 @@ export const loadAllCardsData = createAsyncThunk<
   return response
 })
 
-type selfCryptoType = [name: string, coin: { USD: number }]
-
 const cryptoSlice = createSlice({
   name: cryptoSliceName,
   initialState,
   reducers: {
-    pushBTC: (state: ICryptoData, action: PayloadAction<CryptoCurrency>) => {
-      state.BTC.push(action.payload)
-    },
+/*    pushBTC: (state: ICryptoData, action: PayloadAction<CryptoCurrency>) => {
+      state.chartData.push(action.payload)
+    },*/
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -103,6 +97,11 @@ const cryptoSlice = createSlice({
       (state: ICryptoData, action: PayloadAction<any>) => {
         console.log('ready')
         state.loading = 'succeeded'
+          state.chartData=action.payload.map((item:any)=>({
+              ...item,
+              time: new Date(item.time*1000).getDate().toLocaleString()
+          })
+          )
       }
     )
     builder.addCase(
@@ -113,19 +112,12 @@ const cryptoSlice = createSlice({
       }
     )
     builder.addCase(
-      loadGraphicsDataByCryptoName.pending,
-      (state: ICryptoData, action: PayloadAction<any>) => {
-        state.loading = 'pending'
-      }
-    )
-    builder.addCase(
       loadAllCardsData.fulfilled,
       (state: ICryptoData, action: PayloadAction<any>) => {
         console.log('action', action)
         const neededData = Object.entries(action.payload).map(
           ([key, coin]: any) => ({ name: key, value: coin.USD })
         )
-
         console.log('nedata', neededData)
         state.cryptoValues = neededData
           state.loading='succeeded'
@@ -148,6 +140,6 @@ const cryptoSlice = createSlice({
 
 interface PayloadCardsDataType {}
 
-export const { pushBTC } = cryptoSlice.actions
+
 
 export default cryptoSlice.reducer

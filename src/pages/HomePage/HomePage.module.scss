@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 208px;
   @media screen and(max-width:$breakpoint992) {
    flex-wrap:wrap-reverse;
     justify-content: center;

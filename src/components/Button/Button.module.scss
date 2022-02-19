@@ -6,10 +6,7 @@
   &:hover{
     //outline: 1px solid $semi-white;
     background: rgba(0, 117, 255, 0.9);
-    a{
       color: $evil-blue;
-    }
-
   }
 }
 
@@ -19,9 +16,7 @@
   border-radius: 59px;
   cursor: pointer;
   transition: all .3s ease;
-  a{
-    transition: all .3s ease;
-  }
+  width: fit-content;
 }
 
 .transparent_button {
@@ -29,8 +24,6 @@
   outline: 1px solid #FFFFFF;
   &:hover{
     outline: 1px solid rgba(0, 117, 255, 1);
-    a{
       color: rgba(0, 117, 255, 1);
-    }
   }
 }

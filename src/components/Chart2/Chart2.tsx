@@ -43,20 +43,7 @@ const [data,setData] = useState([
                 legend: 'linear scale',
                 legendOffset: -12,
             }}
-        />   <button onClick={()=> setData([
-            {
-                id: 'fake corp. B',
-                data: [
-                    { x: 0, y: 8 },
-                    { x: 1, y: 5 },
-                    { x: 2, y: 12 },
-                    { x: 4, y: 9 },
-                    { x: 4, y: 13 },
-                    { x: 8, y: 16 },
-                    { x: 9, y: 12 },
-                ],
-            },
-        ])}/>
+        />
         </>
     )
 }
