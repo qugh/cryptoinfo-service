@@ -25,7 +25,7 @@ import {
 } from '../../constants/variables'
 import { useNavigate } from 'react-router-dom'
 import swapSliderSize from '../../utils/swapSliderSize'
-import CurrencySelector from './CurrencySelector'
+import CurrencySelector, { exchangeCurrencyType } from './CurrencySelector'
 
 const SettingsPage: FC = () => {
   let navigate = useNavigate()
@@ -43,7 +43,7 @@ const SettingsPage: FC = () => {
     //dispatch(changeSlidesToView(swapSliderSize(checked.length)))
   }, [checked, currencies, error, dispatch])
 
-  const [compareCurr, setCompareCurr] = useState<'EUR' | 'USD'>(compareCurrency)
+  const [compareCurr, setCompareCurr] = useState<exchangeCurrencyType>(compareCurrency)
   useEffect(() => {
 
     dispatch(changeCompareCurrency(compareCurr))

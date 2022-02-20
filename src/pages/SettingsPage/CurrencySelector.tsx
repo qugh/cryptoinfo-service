@@ -1,15 +1,15 @@
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import Box from "@mui/material/Box";
 import {Dispatch, FC, SetStateAction} from "react";
-
+export type exchangeCurrencyType = 'EUR' | 'USD'
 interface ICurrencySelector {
-    compareCurr: 'EUR' | 'USD',
-    setCompareCurr: Dispatch<SetStateAction<any>>
+    compareCurr: exchangeCurrencyType,
+    setCompareCurr: Dispatch<SetStateAction<exchangeCurrencyType>>
 }
 
 const CurrencySelector:FC<ICurrencySelector> = ({compareCurr,setCompareCurr}) => {
     const handleChangeCurrency = (event: SelectChangeEvent) => {
-        setCompareCurr(event.target.value)
+        setCompareCurr(event.target.value as keyof SetStateAction<exchangeCurrencyType>)
     }
     return ( <FormControl sx={{marginTop:'30px'}} fullWidth>
         <Box sx={{ minWidth: 150 }}>
