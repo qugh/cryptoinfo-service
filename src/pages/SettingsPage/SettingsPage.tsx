@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import cryptoSelector from '../../redux/selectors/cryptoSelector'
 import {
+  changeCompareCurrency,
   changeCurrencies,
   changeSlidesToView,
   currenciesInStock,
@@ -24,11 +25,12 @@ import {
 } from '../../constants/variables'
 import { useNavigate } from 'react-router-dom'
 import swapSliderSize from '../../utils/swapSliderSize'
+import CurrencySelector from './CurrencySelector'
 
 const SettingsPage: FC = () => {
   let navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { currencies, followedCurrencies } = useAppSelector(cryptoSelector)
+  const { currencies, followedCurrencies,compareCurrency } = useAppSelector(cryptoSelector)
   const [checked, setChecked] =
     useState<currenciesInStock[]>(followedCurrencies)
 
@@ -41,9 +43,13 @@ const SettingsPage: FC = () => {
     //dispatch(changeSlidesToView(swapSliderSize(checked.length)))
   }, [checked, currencies, error, dispatch])
 
+  const [compareCurr, setCompareCurr] = useState<'EUR' | 'USD'>(compareCurrency)
   useEffect(() => {
-    //получить данные из локал сторейдж и запушить их в checked
-  }, [])
+
+    dispatch(changeCompareCurrency(compareCurr))
+  }, [compareCurr,dispatch])
+
+
   const handleChangeSelfItem = (item: currenciesInStock) => {
     const searchItem = checked.findIndex((checked) => checked === item)
     if (~searchItem) {
@@ -97,14 +103,13 @@ const SettingsPage: FC = () => {
       })}
     </Box>
   )
-
   return (
     <div className={styles.container}>
       <FormControl
         required
         error={error}
         component="fieldset"
-        sx={{ m: 3 }}
+        sx={{ m: 3,maxWidth:'700px'}}
         variant="standard"
       >
         <FormLabel component="legend" sx={{ color: 'white' }}>
@@ -131,6 +136,7 @@ const SettingsPage: FC = () => {
             Please select at least {minCurrenciesToShow} options
           </FormHelperText>
         )}
+       <CurrencySelector compareCurr={compareCurr} setCompareCurr={setCompareCurr}  />
         <Button
           disabled={error}
           onClick={handleStart}

@@ -17,6 +17,7 @@ interface ICryptoData {
   cryptoValues: cryptoValuesType[]
   followedCurrencies: Array<currenciesInStock>
   slidesToView: number[]
+  compareCurrency: 'USD' | 'EUR'
 }
 
 export type currenciesInStock =
@@ -26,7 +27,6 @@ export type currenciesInStock =
   | 'ADA'
   | 'DOT'
   | 'BNB'
-  | 'SHIB'
   | 'SOL'
   | 'LUNA'
   | 'USDT'
@@ -36,6 +36,7 @@ export type currenciesInStock =
   | 'NMR'
   | 'AAVE'
   | 'YFI'
+  | 'SHIB'
   | 'KSM'
   | 'MKR'
 
@@ -51,7 +52,6 @@ const initialState = {
     'ADA',
     'DOT',
     'BNB',
-    'SHIB',
     'SOL',
     'LUNA',
     'USDT',
@@ -61,6 +61,7 @@ const initialState = {
     'NMR',
     'AAVE',
     'YFI',
+    'SHIB',
     'KSM',
     'MKR',
   ],
@@ -71,7 +72,6 @@ const initialState = {
     'ADA',
     'DOT',
     'BNB',
-    'SHIB',
     'SOL',
     'LUNA',
     'USDT',
@@ -81,11 +81,13 @@ const initialState = {
     'NMR',
     'AAVE',
     'YFI',
+    'SHIB',
     'KSM',
     'MKR',
   ],
   cryptoValues: [],
   slidesToView: [2, 3, 4],
+  compareCurrency: 'EUR',
 } as ICryptoData
 
 interface IGraphicsData {
@@ -112,7 +114,11 @@ export const loadGraphicsDataByCryptoName = createAsyncThunk<
     dispatch: AppDispatch
   }
 >('crypto/fetchByCryptoName', async (cryptoName, thunkAPI) => {
-  const response = await getCryptoCurrency(30, cryptoName, 'USD')
+  const response = await getCryptoCurrency(
+    30,
+    cryptoName,
+    thunkAPI.getState().crypto.compareCurrency
+  )
   return response.Data.Data as CryptoCurrency[]
 })
 
@@ -127,7 +133,10 @@ export const loadAllCardsData = createAsyncThunk<
   const currenciesFollowed = thunkAPI
     .getState()
     .crypto.followedCurrencies.join()
-  return await getAllCryptoValues(currenciesFollowed, 'USD')
+  return await getAllCryptoValues(
+    currenciesFollowed,
+    thunkAPI.getState().crypto.compareCurrency
+  )
 })
 
 const cryptoSlice = createSlice({
@@ -145,6 +154,12 @@ const cryptoSlice = createSlice({
       action: PayloadAction<number[]>
     ) => {
       state.slidesToView = action.payload
+    },
+    changeCompareCurrency: (
+      state: ICryptoData,
+      action: PayloadAction<'USD' | 'EUR'>
+    ) => {
+      state.compareCurrency = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -170,15 +185,22 @@ const cryptoSlice = createSlice({
     builder.addCase(
       loadAllCardsData.fulfilled,
       (state: ICryptoData, action: PayloadAction<IGraphicsData>) => {
-        state.cryptoValues = Object.entries(action.payload).map(
-          ([key, coin]: any) => ({ name: key, value: coin.USD })
-        )
+        if (state.compareCurrency === 'USD') {
+          state.cryptoValues = Object.entries(action.payload).map(
+            ([key, coin]: any) => ({ name: key, value: coin.USD })
+          )
+        } else {
+          state.cryptoValues = Object.entries(action.payload).map(
+            ([key, coin]: any) => ({ name: key, value: coin.EUR })
+          )
+        }
         state.loading = 'succeeded'
       }
     )
   },
 })
 
-export const { changeCurrencies, changeSlidesToView } = cryptoSlice.actions
+export const { changeCurrencies, changeSlidesToView, changeCompareCurrency } =
+  cryptoSlice.actions
 
 export default cryptoSlice.reducer

@@ -1,9 +1,10 @@
 import { FC, SetStateAction, Dispatch } from 'react'
 import styles from '../../../pages/CryptoPage/CryptoPage.module.scss'
 import clsx from 'clsx'
-import { useAppDispatch } from '../../../hooks/redux'
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux'
 import { loadGraphicsDataByCryptoName } from '../../../redux/reducers/cryptoReducer'
 import logoCreator from '../../../utils/logoCreator'
+import cryptoSelector from "../../../redux/selectors/cryptoSelector";
 
 
 interface ICryptoItem {
@@ -25,6 +26,7 @@ const CryptoItem: FC<ICryptoItem> = ({
 }) => {
   const isActive = tabIndex === activeItem
   const dispatch = useAppDispatch()
+  const {compareCurrency} = useAppSelector(cryptoSelector)
   const handleClick = () => {
     if (!isActive) {
       dispatch(loadGraphicsDataByCryptoName(title))
@@ -53,7 +55,7 @@ const CryptoItem: FC<ICryptoItem> = ({
           {percent}
         </span>*/}
       </div>
-      <span className={styles.crypto_currency}>{value} $</span>
+      <span className={styles.crypto_currency}>{value} {compareCurrency}</span>
       {/*<span className={styles.crypto_16px}>{oldValue}</span>*/}
     </div>
   )

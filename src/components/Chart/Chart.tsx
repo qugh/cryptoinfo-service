@@ -41,6 +41,8 @@ const Chart: FC<IChart3> = ({ data }) => {
           <ReferenceLine y={0} stroke="#000" />
           <Line type="monotone" dataKey="high" stroke="#82ca9d" />
           <Line type="monotone" dataKey="low" stroke="red" />
+          <Line type="monotone" dataKey="open" stroke="gray" />
+          <Line type="monotone" dataKey="close" stroke="green" />
           <Brush
             startIndex={0}
             dataKey="title"

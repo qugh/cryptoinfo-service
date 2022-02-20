@@ -14,23 +14,7 @@ import getCrypto from '../../redux/selectors/cryptoSelector'
 import { Slider } from '../../components/Slider/Slider'
 import { refreshItemsInterval } from '../../constants/variables'
 
-export type CryptoItemType = {
-  title: string
-  oldValue?: number
-  value: number
-  percent?: string
-  isUp?: boolean | true
-  isGreen?: boolean | true
-  onClick?: any
-  tabIndex?: number
-}
 
-export type graphicDataType = {
-  title: string
-  high: number
-  low: number
-  date: string
-}
 const CryptoPage: FC = () => {
   const [activeItem, setActiveItem] = useState(0)
 
