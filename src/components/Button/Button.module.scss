@@ -1,33 +1,37 @@
 @import '../../constants/styles';
+
 .blue_button {
   background: rgba(0, 117, 255, 1);
+
   a {
   }
-  &:hover{
+
+  &:hover {
     //outline: 1px solid $semi-white;
     background: rgba(0, 117, 255, 0.9);
-      color: $evil-blue;
+    color: $evil-blue;
   }
 }
 
 .default_button {
-  font-size:16px;
+  font-size: 16px;
   border: none;
   padding: 9px 27px;
   border-radius: 59px;
   cursor: pointer;
   transition: all .3s ease;
   width: fit-content;
-  @media screen and (max-width:210px){
-    font-size:10px;
+  @media screen and (max-width: 210px) {
+    font-size: 10px;
   }
 }
 
 .transparent_button {
   background: transparent;
   outline: 1px solid #FFFFFF;
-  &:hover{
+
+  &:hover {
     outline: 1px solid rgba(0, 117, 255, 1);
-      color: rgba(0, 117, 255, 1);
+    color: rgba(0, 117, 255, 1);
   }
 }

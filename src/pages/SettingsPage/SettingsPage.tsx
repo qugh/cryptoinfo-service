@@ -10,7 +10,7 @@ import {
   changeSlidesToView,
   currenciesInStock,
 } from '../../redux/reducers/cryptoReducer'
-import { blue, pink } from '@mui/material/colors'
+import { blue } from '@mui/material/colors'
 import {
   Button,
   FormControl,
@@ -18,9 +18,11 @@ import {
   FormHelperText,
   FormLabel,
 } from '@mui/material'
-import { minCurrenciesToShow } from '../../constants/variables'
+import {
+  minCurrenciesToShow,
+  minCurrenciesToShowAsString,
+} from '../../constants/variables'
 import { useNavigate } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
 import swapSliderSize from '../../utils/swapSliderSize'
 
 const SettingsPage: FC = () => {
@@ -33,11 +35,11 @@ const SettingsPage: FC = () => {
   const error = checked.length < minCurrenciesToShow
 
   useEffect(() => {
-    if (!error) {
-      dispatch(changeSlidesToView(swapSliderSize(checked.length)))
+    if (!error && checked !== currencies) {
       dispatch(changeCurrencies(checked))
     }
-  }, [checked])
+    //dispatch(changeSlidesToView(swapSliderSize(checked.length)))
+  }, [checked, currencies, error, dispatch])
 
   useEffect(() => {
     //получить данные из локал сторейдж и запушить их в checked
@@ -51,7 +53,6 @@ const SettingsPage: FC = () => {
     }
   }
   const handleSelectAllItems = () => {
-    console.log(checked, checked.length)
     if (checked.length === currencies.length) {
       setChecked([])
     } else {
@@ -62,19 +63,26 @@ const SettingsPage: FC = () => {
     navigate('/crypto')
   }
   const colorType = {
-    color: 'blue[100]',
+    color: blue[100],
     '&.Mui-checked': {
       color: blue[500],
     },
   }
 
   const children = (
-    <Box sx={{ display: 'flex', flexDirection: 'row', ml: 3,flexWrap:'wrap',alignItems:'center' }}>
-      {currencies.map((item, index) => {
-
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        ml: 3,
+        flexWrap: 'wrap',
+        alignItems: 'center',
+      }}
+    >
+      {currencies.map((item) => {
         return (
           <FormControlLabel
-              sx={{width:'85px'}}
+            sx={{ width: '85px' }}
             label={item}
             key={item}
             control={
@@ -100,11 +108,11 @@ const SettingsPage: FC = () => {
         variant="standard"
       >
         <FormLabel component="legend" sx={{ color: 'white' }}>
-          Pick two
+          Pick {minCurrenciesToShowAsString}
         </FormLabel>
         <FormGroup>
           <FormControlLabel
-            label="Parent"
+            label="Select all"
             control={
               <Checkbox
                 checked={checked.length === currencies.length}
@@ -123,11 +131,20 @@ const SettingsPage: FC = () => {
             Please select at least {minCurrenciesToShow} options
           </FormHelperText>
         )}
-        {/*<Button type={'transparent'} title={'Go back'} path={'/crypto'}/>*/}
         <Button
           disabled={error}
           onClick={handleStart}
-          sx={{width:'200px',alignSelf:'center', color: 'white', marginTop: '10px', '& button': { m: 1 }, '&.Mui-disabled':{color:'gray',border:' 1px solid rgb(77 88 98 / 50%);'} }}
+          sx={{
+            width: '200px',
+            alignSelf: 'center',
+            color: 'white',
+            marginTop: '10px',
+            '& button': { m: 1 },
+            '&.Mui-disabled': {
+              color: 'gray',
+              border: ' 1px solid rgb(77 88 98 / 50%);',
+            },
+          }}
           variant="outlined"
         >
           Save

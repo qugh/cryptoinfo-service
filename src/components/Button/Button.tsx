@@ -5,31 +5,28 @@ import styles from './Button.module.scss'
 import { TRANSPARENT_BUTTON, BLUE_BUTTON } from '../../constants/types'
 
 interface ButtonProps {
-  type: string
+  type: typeof TRANSPARENT_BUTTON | typeof BLUE_BUTTON
   title: string
   className?: string
   path: string | ''
+  onClick?: () => void
 }
 
-const Button: FC<ButtonProps> = ({ type, className, title, path }) => {
+const Button: FC<ButtonProps> = ({ type, className, title, path, onClick }) => {
   return (
-    // <button
-    //   className={clsx(
-    //     type == TRANSPARENT_BUTTON
-    //       ? styles.transparent_button
-    //       : styles.blue_button,
-    //     styles.default_button,
-    //     className
-    //   )}
-    // >
-      <NavLink  className={clsx(
-          type == TRANSPARENT_BUTTON
-              ? styles.transparent_button
-              : styles.blue_button,
-          styles.default_button,
-          className
-      )} to={path}>{title}</NavLink>
-    // </button>
+    <NavLink
+      className={clsx(
+        type === TRANSPARENT_BUTTON
+          ? styles.transparent_button
+          : styles.blue_button,
+        styles.default_button,
+        className
+      )}
+      to={path}
+      onClick={onClick}
+    >
+      {title}
+    </NavLink>
   )
 }
 

@@ -7,7 +7,7 @@
   height: max-content;
   @media screen and (max-width: $breakpoint992) {
     padding-top: 20px;
-    margin-bottom:50px;
+    margin-bottom: 50px;
   }
 
   .menu_with_logo {
@@ -54,8 +54,8 @@
       @media screen and (max-width: $breakpoint992) {
         margin-right: 20px;
       }
-      @media screen and (max-width: 285px){
-        display:none;
+      @media screen and (max-width: 285px) {
+        display: none;
       }
     }
   }

@@ -4,8 +4,8 @@ export interface CryptoCurrency {
   open: number
   close: number
   time: number
-  volumefrom?:number
-  volumeto?:number
-  conversionType?:string
-  conversionSymbol?:string
+  volumefrom?: number
+  volumeto?: number
+  conversionType?: string
+  conversionSymbol?: string
 }

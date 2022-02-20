@@ -1,8 +1,4 @@
-import axios from 'axios'
-
-export const instance = axios.create({
-  baseURL: 'https://min-api.cryptocompare.com/data',
-})
+import instance from './instance'
 
 const CryptoAPI = {
   getCryptoCurrency: (
@@ -11,20 +7,23 @@ const CryptoAPI = {
     currencyToCompare: string = 'USD'
   ) => {
     return instance
-      .get(`/v2/histoday?fsym=${currency}&tsym=${currencyToCompare}&limit=${limit}`)
-      .then((response: any) => {
+      .get(
+        `/v2/histoday?fsym=${currency}&tsym=${currencyToCompare}&limit=${limit}`
+      )
+      .then((response) => {
         return response.data
       })
   },
-    getAllCryptoValues: (   currency: string = 'BTC', //BTC,ETH,DOGE,ADA,DOT,BNB
-                            currencyToCompare: string = 'USD')/*: Promise<Record<string, { USD: number }>> =>*/=> {
-      return instance.get(`/pricemulti?fsyms=${currency}&tsyms=${currencyToCompare}`).then(
-          (response:any) => {
-              console.log('all cryptoValues',response.data)
-              return response.data
-          }
-      )
-    }
+  getAllCryptoValues: (
+    currency: string = 'BTC',
+    currencyToCompare: string = 'USD'
+  ) /*: Promise<Record<string, { USD: number }>> =>*/ => {
+    return instance
+      .get(`/pricemulti?fsyms=${currency}&tsyms=${currencyToCompare}`)
+      .then((response) => {
+        return response.data
+      })
+  },
 }
 
 export default CryptoAPI

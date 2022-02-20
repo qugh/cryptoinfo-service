@@ -4,12 +4,12 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage'
 import HomePage from '../pages/HomePage/HomePage'
 import SettingsPage from "../pages/SettingsPage/SettingsPage";
 
-const ABOUT_PATH = '/about'
-const HOME_PATH = ''
-const FAQ_PATH = '/faq'
-const SETTINGS_PATH = '/settings'
-const CONTACT_PATH = '/contact'
-const CRYPTO_PATH = '/crypto'
+export const ABOUT_PATH = '/about'
+export const HOME_PATH = ''
+export const FAQ_PATH = '/faq'
+export const SETTINGS_PATH = '/settings'
+export const CONTACT_PATH = '/contact'
+export const CRYPTO_PATH = '/crypto'
 
 const routes: RouteObject[] = [
   {
@@ -37,14 +37,14 @@ export type menuItemsType = {
 
 export const menuItems: Array<menuItemsType> = [
   { title: 'Home', path: HOME_PATH },
-  {
+/*  {
     title: 'About',
     path: ABOUT_PATH,
   },
   {
     title: 'Contact us',
     path: CONTACT_PATH,
-  },
+  },*/
   {
     title: 'Settings',
     path: SETTINGS_PATH,

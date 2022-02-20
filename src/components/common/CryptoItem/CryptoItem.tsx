@@ -1,12 +1,10 @@
-import { FC, SetStateAction, Dispatch, SVGProps, useState } from 'react'
+import { FC, SetStateAction, Dispatch } from 'react'
 import styles from '../../../pages/CryptoPage/CryptoPage.module.scss'
 import clsx from 'clsx'
-import { CryptoItemType } from 'pages/CryptoPage/CryptoPage'
 import { useAppDispatch } from '../../../hooks/redux'
 import { loadGraphicsDataByCryptoName } from '../../../redux/reducers/cryptoReducer'
-import { ReactComponent as BitcoinLogo } from '../../../assets/images/bitcoin-btc-logo.svg'
 import logoCreator from '../../../utils/logoCreator'
-import { Transition } from 'react-transition-group'
+
 
 interface ICryptoItem {
   value: number
@@ -15,7 +13,6 @@ interface ICryptoItem {
   tabIndex: number
   activeItem: number
   setActiveItem: Dispatch<SetStateAction<number>>
-  cryptoLogos: Record<string, FC<SVGProps<SVGSVGElement>>>
   inProp?: boolean
 }
 
@@ -46,7 +43,7 @@ const CryptoItem: FC<ICryptoItem> = ({
       <div className={styles.card_items__image}>{logoCreator(title)}</div>
 
       <div className={styles.currency_block}>
-        <span className={styles.crypto_16px}>{ title }</span>
+        <span className={styles.crypto_16px}>{title}</span>
         {/*  <span
           className={clsx([
             styles.currency_percent,
@@ -56,7 +53,7 @@ const CryptoItem: FC<ICryptoItem> = ({
           {percent}
         </span>*/}
       </div>
-      <span className={styles.crypto_currency}>{ value} $</span>
+      <span className={styles.crypto_currency}>{value} $</span>
       {/*<span className={styles.crypto_16px}>{oldValue}</span>*/}
     </div>
   )

@@ -6,7 +6,7 @@ interface IBurgerButton {
 }
 
 const BurgerButton:FC<IBurgerButton> = ({onClick}) => (<button onClick={onClick} className={styles.burger_btn}>
-    <span></span>
+    <span/>
 </button>)
 
 export default BurgerButton

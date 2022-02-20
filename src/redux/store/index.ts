@@ -1,19 +1,19 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import cryptoReducer from "../reducers/cryptoReducer";
+import cryptoReducer from '../reducers/cryptoReducer'
+
 const reducers = {
-    crypto: cryptoReducer
+  crypto: cryptoReducer,
 }
 
-const rootReducer = combineReducers({...reducers})
+const rootReducer = combineReducers({ ...reducers })
 
 const setupStore = () =>
-    configureStore({
-        reducer: rootReducer
-    })
-
+  configureStore({
+    reducer: rootReducer,
+  })
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppStore = ReturnType<typeof setupStore>
-export type AppDispatch = AppStore["dispatch"]
+export type AppDispatch = AppStore['dispatch']
 
-export default setupStore;
+export default setupStore

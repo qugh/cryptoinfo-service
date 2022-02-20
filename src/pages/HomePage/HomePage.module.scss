@@ -1,103 +1,111 @@
 @import 'src/constants/styles';
+
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 208px;
-  @media screen and(max-width:$breakpoint992) {
-   flex-wrap:wrap-reverse;
+  @media screen and(max-width: $breakpoint992) {
+    flex-wrap: wrap-reverse;
     justify-content: center;
   }
-  @media screen and (max-width:$breakpoint768){
-    margin-top:100px;
+  @media screen and (max-width: $breakpoint768) {
+    margin-top: 100px;
   }
-  @media screen and (max-width:$breakpoint480){
-    margin-top:50px;
+  @media screen and (max-width: $breakpoint480) {
+    margin-top: 50px;
   }
-  @media screen and (max-width:250px){
-    font-size:20px;
-    line-height:100%;
+  @media screen and (max-width: 250px) {
+    font-size: 20px;
+    line-height: 100%;
   }
+
   .header_text {
     display: flex;
     max-width: 514px;
     flex-direction: column;
-    @media screen and(max-width:$breakpoint1150) {
-      max-width:400px;
+    @media screen and(max-width: $breakpoint1150) {
+      max-width: 400px;
     }
-    @media screen and(max-width:$breakpoint992) {
-    max-width:100%;
-      max-width:850px;
-      margin-bottom:100px;
+    @media screen and(max-width: $breakpoint992) {
+      max-width: 100%;
+      max-width: 850px;
+      margin-bottom: 100px;
     }
-    .header_h1{
+
+    .header_h1 {
       font-family: Roboto;
-      margin:0 0 32px 0;
+      margin: 0 0 32px 0;
       font-style: normal;
       font-weight: bold;
       font-size: 64px;
       line-height: 125%;
-      @media screen and(max-width:$breakpoint1150){
-        font-size:44px;
-        line-height:110%;
+      @media screen and(max-width: $breakpoint1150) {
+        font-size: 44px;
+        line-height: 110%;
       }
-      @media screen and (max-width:$breakpoint992){
-        font-size:55px;
-        line-height:110%;
+      @media screen and (max-width: $breakpoint992) {
+        font-size: 55px;
+        line-height: 110%;
       }
-      @media screen and (max-width:$breakpoint768){
-        font-size:47px;
-        line-height:100%;
+      @media screen and (max-width: $breakpoint768) {
+        font-size: 47px;
+        line-height: 100%;
       }
-      @media screen and (max-width:$breakpoint480){
-        font-size:32px;
-        line-height:100%;
+      @media screen and (max-width: $breakpoint480) {
+        font-size: 32px;
+        line-height: 100%;
       }
-      @media screen and (max-width:250px){
-        font-size:20px;
-        line-height:100%;
+      @media screen and (max-width: 250px) {
+        font-size: 20px;
+        line-height: 100%;
       }
     }
-    .header_span{
-    margin-bottom:32px;
+
+    .header_span {
+      margin-bottom: 32px;
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 184%;
-      @media screen and(max-width:$breakpoint992){
-        font-size:14px;
-        line-height:164%;
+      @media screen and(max-width: $breakpoint992) {
+        font-size: 14px;
+        line-height: 164%;
       }
-      @media screen and (max-width:$breakpoint768){
-        font-size:14px;
-        line-height:144%;
+      @media screen and (max-width: $breakpoint768) {
+        font-size: 14px;
+        line-height: 144%;
       }
-      @media screen and (max-width:$breakpoint768){
+      @media screen and (max-width: $breakpoint768) {
 
       }
-      @media screen and (max-width:250px){
-        font-size:13px;
-        line-height:100%;
+      @media screen and (max-width: 250px) {
+        font-size: 13px;
+        line-height: 100%;
       }
     }
+
     button {
       width: fit-content;
-      @media screen and(max-width:$breakpoint992) {
+      @media screen and(max-width: $breakpoint992) {
       }
     }
   }
-  .header_image{
+
+  .header_image {
     filter: drop-shadow(0px 4px 250px #0070FF);
-    img{
+
+    img {
       border-radius: 18px;
       border: 1px solid #5AA3FF;
-      width:100%;
+      width: 100%;
     }
-    @media screen and(max-width:$breakpoint992) {
-      margin-bottom:50px;
+
+    @media screen and(max-width: $breakpoint992) {
+      margin-bottom: 50px;
     }
-    @media screen and (max-width:$breakpoint480){
-      margin-bottom:20px;
+    @media screen and (max-width: $breakpoint480) {
+      margin-bottom: 20px;
     }
   }
 }
