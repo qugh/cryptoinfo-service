@@ -19,12 +19,16 @@ const CryptoPage: FC = () => {
   const [activeItem, setActiveItem] = useState(0)
 
   const dispatch = useAppDispatch()
-  const { loading, cryptoValues, chartData } = useAppSelector(getCrypto)
+  const { loading, cryptoValues, chartData,followedCurrencies } = useAppSelector(getCrypto)
+
+  useEffect(() => {
+    dispatch(loadAllCardsData())
+    dispatch(loadGraphicsDataByCryptoName(followedCurrencies[0])) //
+  },[dispatch])
+
   useEffect(() => {
     setInterval(() => dispatch(loadAllCardsData()), refreshItemsInterval)
-    dispatch(loadAllCardsData())
-    dispatch(loadGraphicsDataByCryptoName('BTC'))
-  }, [dispatch]) //Todo
+  }, [dispatch])
 
   return (
     <>
