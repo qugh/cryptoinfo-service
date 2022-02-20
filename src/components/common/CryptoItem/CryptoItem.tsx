@@ -22,11 +22,9 @@ interface ICryptoItem {
 const CryptoItem: FC<ICryptoItem> = ({
   value,
   title,
-  isGreen,
   tabIndex,
   setActiveItem,
   activeItem,
-  cryptoLogos,
 }) => {
   const isActive = tabIndex === activeItem
   const dispatch = useAppDispatch()
@@ -45,17 +43,10 @@ const CryptoItem: FC<ICryptoItem> = ({
         styles.card_items__item,
       ])}
     >
-      {/*      <BitcoinLogo
-        className={clsx([
-          styles.card_items__image,
-          isGreen ? styles.green : styles.red,
-        ])}
-      />
-      <cryptoLogos.BTC />*/}
       <div className={styles.card_items__image}>{logoCreator(title)}</div>
 
       <div className={styles.currency_block}>
-        <span className={styles.crypto_16px}>{title}</span>
+        <span className={styles.crypto_16px}>{ title }</span>
         {/*  <span
           className={clsx([
             styles.currency_percent,
@@ -65,7 +56,7 @@ const CryptoItem: FC<ICryptoItem> = ({
           {percent}
         </span>*/}
       </div>
-      <span className={styles.crypto_currency}>{value} $</span>
+      <span className={styles.crypto_currency}>{ value} $</span>
       {/*<span className={styles.crypto_16px}>{oldValue}</span>*/}
     </div>
   )

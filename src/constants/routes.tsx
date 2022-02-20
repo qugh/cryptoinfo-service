@@ -2,6 +2,7 @@ import CryptoPage from '../pages/CryptoPage/CryptoPage'
 import { RouteObject } from 'react-router-dom'
 import ErrorPage from '../pages/ErrorPage/ErrorPage'
 import HomePage from '../pages/HomePage/HomePage'
+import SettingsPage from "../pages/SettingsPage/SettingsPage";
 
 const ABOUT_PATH = '/about'
 const HOME_PATH = ''
@@ -18,6 +19,10 @@ const routes: RouteObject[] = [
   {
     path: CRYPTO_PATH,
     element: <CryptoPage />,
+  },
+  {
+    path:SETTINGS_PATH,
+    element: <SettingsPage />
   },
   {
     path: '*',

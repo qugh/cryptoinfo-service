@@ -10,6 +10,10 @@ import { ReactComponent as ADALogo } from '../../assets/images/cardano-ada-logo.
 import { ReactComponent as DogeLogo } from '../../assets/images/dogecoin-doge-logo.svg'
 import { ReactComponent as ETHLogo } from '../../assets/images/ethereum-eth-logo.svg'
 import { ReactComponent as DOTLogo } from '../../assets/images/polkadot-new-dot-logo.svg'
+import {useAppSelector} from "../../hooks/redux";
+import cryptoSelector, {
+  getSlidesSize,
+} from '../../redux/selectors/cryptoSelector'
 
 const cryptoLogos = {
   BTC:BitcoinLogo,
@@ -31,15 +35,15 @@ export const Slider: FC<ISliderTypes> = ({
   activeItem,
   setActiveItem,
 }: any) => {
-
+const slidesToView = useAppSelector(getSlidesSize)
     return <><Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={15}
         slidesPerView={1}
         breakpoints={{
-            '650': {slidesPerView: 2},
-            '968': {slidesPerView: 3},
-            '1268': {slidesPerView: 4},
+            '650': {slidesPerView: slidesToView[0]},
+            '968': {slidesPerView: slidesToView[1]},
+            '1268': {slidesPerView: slidesToView[2]},
         }}
         navigation
     >

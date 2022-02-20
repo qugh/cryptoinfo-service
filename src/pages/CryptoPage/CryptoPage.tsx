@@ -4,7 +4,7 @@ import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 import 'swiper/scss/scrollbar'
-import Chart3 from '../../components/Chart3/Chart3'
+import Chart from '../../components/Chart/Chart'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
   loadAllCardsData,
@@ -47,7 +47,7 @@ const CryptoPage: FC = () => {
       <div className={styles.container}>
         {!!error && error}
         <div style={{ height: '375px' }}>
-          {loading === 'succeeded' && <Chart3 data={chartData} />}
+          {loading === 'succeeded' && <Chart data={chartData} />}
         </div>
         <div className={styles.card_items}>
           {loading === 'succeeded' && (

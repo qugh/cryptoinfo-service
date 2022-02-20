@@ -4,7 +4,8 @@ import { CryptoItemType, graphicDataType } from 'pages/CryptoPage/CryptoPage'
 
 const getCrypto = (state: RootState) => state.crypto
 
-
+export const getSlidesSize  = createDraftSafeSelector(getCrypto,
+    (state)=> state.slidesToView)
 /*export const getBTCGraphics = (state: RootState) => {
   return state.crypto.BTC.map((item) => ({
     title: 'BTC',
