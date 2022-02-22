@@ -11,7 +11,7 @@ const CurrencySelector:FC<ICurrencySelector> = ({compareCurr,setCompareCurr}) =>
     const handleChangeCurrency = (event: SelectChangeEvent) => {
         setCompareCurr(event.target.value as keyof SetStateAction<exchangeCurrencyType>)
     }
-    return ( <FormControl sx={{marginTop:'30px'}} fullWidth>
+    return ( <FormControl sx={{marginTop:'30px',width:'fit-content',marginRight:'30px'}} fullWidth>
         <Box sx={{ minWidth: 150 }}>
             <InputLabel
                 sx={{ color: 'white', borderColor: 'white', '&.Mui-focused':{

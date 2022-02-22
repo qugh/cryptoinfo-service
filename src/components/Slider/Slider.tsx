@@ -1,26 +1,25 @@
-import { cryptoValuesType } from 'redux/reducers/cryptoReducer'
+import {cryptoValuesType, sortingType} from 'redux/reducers/cryptoReducer'
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import CryptoItem from '../common/CryptoItem/CryptoItem'
-import {FC} from 'react'
+import {FC, useEffect, useState} from 'react'
 import { Dispatch, SetStateAction } from 'react'
 import {useAppSelector} from "../../hooks/redux";
-import  {
-  getSlidesSize,
+import {
+    getSlidesSize, getSortedCurrencies,
 } from '../../redux/selectors/cryptoSelector'
 
 
 interface ISliderTypes {
-  cryptoValues: cryptoValuesType[]
   activeItem: number
   setActiveItem: Dispatch<SetStateAction<number>>
 }
 
 export const Slider: FC<ISliderTypes> = ({
-  cryptoValues,
   activeItem,
   setActiveItem,
 }) => {
+    const sortedCurrencies = useAppSelector(getSortedCurrencies)
 const slidesToView = useAppSelector(getSlidesSize)
     return <><Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -33,7 +32,7 @@ const slidesToView = useAppSelector(getSlidesSize)
         }}
         navigation
     >
-        {cryptoValues.map((item: cryptoValuesType, key: number) => (
+        {sortedCurrencies.map((item: cryptoValuesType, key: number) => (
             <SwiperSlide key={item.value} virtualIndex={key}>
                 <CryptoItem
                     title={item.name}

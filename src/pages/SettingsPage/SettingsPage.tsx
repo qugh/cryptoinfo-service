@@ -26,6 +26,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import swapSliderSize from '../../utils/swapSliderSize'
 import CurrencySelector, { exchangeCurrencyType } from './CurrencySelector'
+import Sort from "../../components/Sort/Sort";
 
 const SettingsPage: FC = () => {
   let navigate = useNavigate()
@@ -136,7 +137,8 @@ const SettingsPage: FC = () => {
             Please select at least {minCurrenciesToShow} options
           </FormHelperText>
         )}
-       <CurrencySelector compareCurr={compareCurr} setCompareCurr={setCompareCurr}  />
+          <span style={{marginBottom:'30px'}}><CurrencySelector compareCurr={compareCurr} setCompareCurr={setCompareCurr}  />  <Sort/> </span>
+
         <Button
           disabled={error}
           onClick={handleStart}

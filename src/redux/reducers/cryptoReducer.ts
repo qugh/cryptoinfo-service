@@ -8,16 +8,19 @@ const { getCryptoCurrency, getAllCryptoValues } = CryptoAPI
 
 export type cryptoValuesType = { name: string; value: number }
 
+export type sortingType = 'LTH' | 'HTL' | 'SBN'
+
 interface ICryptoData {
   chartData: Array<CryptoCurrency>
   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
   error: string | null | undefined
   // currentRequestId: string | undefined
   currencies: Array<currenciesInStock>
-  cryptoValues: cryptoValuesType[]
+  cryptoValues: Array<cryptoValuesType>
   followedCurrencies: Array<currenciesInStock>
   slidesToView: number[]
   compareCurrency: 'USD' | 'EUR'
+  sortingMethod: sortingType
 }
 
 export type currenciesInStock =
@@ -88,6 +91,7 @@ const initialState = {
   cryptoValues: [],
   slidesToView: [2, 3, 4],
   compareCurrency: 'EUR',
+  sortingMethod: 'LTH'
 } as ICryptoData
 
 interface IGraphicsData {
@@ -161,7 +165,11 @@ const cryptoSlice = createSlice({
     ) => {
       state.compareCurrency = action.payload
     },
+    changeSortMethod: (state:ICryptoData,action:PayloadAction<sortingType>) =>{
+      state.sortingMethod=action.payload
+    }
   },
+
   extraReducers: (builder) => {
     builder.addCase(
       loadGraphicsDataByCryptoName.fulfilled,
@@ -200,7 +208,7 @@ const cryptoSlice = createSlice({
   },
 })
 
-export const { changeCurrencies, changeSlidesToView, changeCompareCurrency } =
+export const { changeCurrencies, changeSlidesToView, changeCompareCurrency,changeSortMethod } =
   cryptoSlice.actions
 
 export default cryptoSlice.reducer

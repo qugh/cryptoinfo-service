@@ -10,21 +10,21 @@ import {
   loadAllCardsData,
   loadGraphicsDataByCryptoName,
 } from '../../redux/reducers/cryptoReducer'
-import getCrypto from '../../redux/selectors/cryptoSelector'
+import getCrypto, {getSortedCurrencies} from '../../redux/selectors/cryptoSelector'
 import { Slider } from '../../components/Slider/Slider'
 import { refreshItemsInterval } from '../../constants/variables'
 
 
 const CryptoPage: FC = () => {
   const [activeItem, setActiveItem] = useState(0)
-
+  const sortedCurrencies = useAppSelector(getSortedCurrencies)
   const dispatch = useAppDispatch()
-  const { loading, cryptoValues, chartData,followedCurrencies } = useAppSelector(getCrypto)
-
+  const { loading, chartData } = useAppSelector(getCrypto)
   useEffect(() => {
+    console.log(sortedCurrencies[0]?.name)
     dispatch(loadAllCardsData())
-    dispatch(loadGraphicsDataByCryptoName(followedCurrencies[0])) //
-  },[dispatch])
+    dispatch(loadGraphicsDataByCryptoName(sortedCurrencies[0]?.name)) //
+  },[dispatch,sortedCurrencies[0]?.name])
 
   useEffect(() => {
     setInterval(() => dispatch(loadAllCardsData()), refreshItemsInterval)
@@ -36,13 +36,11 @@ const CryptoPage: FC = () => {
         <div style={{ height: '375px' }}>
           {loading === 'succeeded' && <Chart data={chartData} />}
         </div>
-
         <div className={styles.card_items}>
           {loading === 'succeeded' && (
             <Slider
               activeItem={activeItem}
               setActiveItem={setActiveItem}
-              cryptoValues={cryptoValues}
             />
           )}
         </div>
