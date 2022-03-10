@@ -3,7 +3,7 @@ import instance from './instance'
 const CryptoAPI = {
   getCryptoCurrency: (
     limit: number,
-    currency: string = 'BTC', //Todo
+    currency: string, //Todo
     currencyToCompare: string = 'USD'
   ) => {
     return instance

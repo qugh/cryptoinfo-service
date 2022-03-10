@@ -26,12 +26,13 @@ import {
 import { useNavigate } from 'react-router-dom'
 import swapSliderSize from '../../utils/swapSliderSize'
 import CurrencySelector, { exchangeCurrencyType } from './CurrencySelector'
-import Sort from "../../components/Sort/Sort";
+import Sort from '../../components/Sort/Sort'
 
 const SettingsPage: FC = () => {
   let navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { currencies, followedCurrencies,compareCurrency } = useAppSelector(cryptoSelector)
+  const { currencies, followedCurrencies, compareCurrency } =
+    useAppSelector(cryptoSelector)
   const [checked, setChecked] =
     useState<currenciesInStock[]>(followedCurrencies)
 
@@ -44,12 +45,11 @@ const SettingsPage: FC = () => {
     //dispatch(changeSlidesToView(swapSliderSize(checked.length)))
   }, [checked, currencies, error, dispatch])
 
-  const [compareCurr, setCompareCurr] = useState<exchangeCurrencyType>(compareCurrency)
+  const [compareCurr, setCompareCurr] =
+    useState<exchangeCurrencyType>(compareCurrency)
   useEffect(() => {
-
     dispatch(changeCompareCurrency(compareCurr))
-  }, [compareCurr,dispatch])
-
+  }, [compareCurr, dispatch])
 
   const handleChangeSelfItem = (item: currenciesInStock) => {
     const searchItem = checked.findIndex((checked) => checked === item)
@@ -88,7 +88,7 @@ const SettingsPage: FC = () => {
     >
       {currencies.map((item) => {
         return (
-          <FormControlLabel
+            <FormControlLabel
             sx={{ width: '85px' }}
             label={item}
             key={item}
@@ -110,7 +110,7 @@ const SettingsPage: FC = () => {
         required
         error={error}
         component="fieldset"
-        sx={{ m: 3,maxWidth:'700px'}}
+        sx={{ m: 3, maxWidth: '700px' }}
         variant="standard"
       >
         <FormLabel component="legend" sx={{ color: 'white' }}>
@@ -137,7 +137,13 @@ const SettingsPage: FC = () => {
             Please select at least {minCurrenciesToShow} options
           </FormHelperText>
         )}
-          <span style={{marginBottom:'30px'}}><CurrencySelector compareCurr={compareCurr} setCompareCurr={setCompareCurr}  />  <Sort/> </span>
+        <span style={{ marginBottom: '30px' }}>
+          <CurrencySelector
+            compareCurr={compareCurr}
+            setCompareCurr={setCompareCurr}
+          />{' '}
+          <Sort />{' '}
+        </span>
 
         <Button
           disabled={error}

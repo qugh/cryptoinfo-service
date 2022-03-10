@@ -20,10 +20,11 @@ const CryptoPage: FC = () => {
   const sortedCurrencies = useAppSelector(getSortedCurrencies)
   const dispatch = useAppDispatch()
   const { loading, chartData } = useAppSelector(getCrypto)
-  useEffect(() => {
-    console.log(sortedCurrencies[0]?.name)
+  useEffect(()=>{
     dispatch(loadAllCardsData())
-    dispatch(loadGraphicsDataByCryptoName(sortedCurrencies[0]?.name)) //
+  },[dispatch])
+  useEffect(() => {
+    sortedCurrencies[0]?.name && dispatch(loadGraphicsDataByCryptoName(sortedCurrencies[0]?.name))
   },[dispatch,sortedCurrencies[0]?.name])
 
   useEffect(() => {
